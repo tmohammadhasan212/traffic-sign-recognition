@@ -118,3 +118,18 @@ def prepare(root: Path, output: Path, seed: int = 2026, validation_fraction: flo
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest
+
+
+def write_or_verify_track_manifest(manifest: dict, path: Path) -> None:
+    """Commit this compact split artifact; reject a future incompatible archive or split."""
+    assignments = {row["track_id"]: row["split"] for row in manifest["training"]}
+    document = {"seed": manifest["seed"],
+                "validation_fraction": manifest["validation_fraction"],
+                "path_sha256": manifest["path_sha256"],
+                "tracks": dict(sorted(assignments.items()))}
+    if path.exists():
+        if json.loads(path.read_text()) != document:
+            raise ValueError(f"Committed track split differs from prepared dataset: {path}")
+    else:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(document, indent=2) + "\n")
