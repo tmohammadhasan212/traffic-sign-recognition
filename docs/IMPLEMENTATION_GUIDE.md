@@ -58,7 +58,7 @@ The explanation module hooks ResNet-18's final convolutional block, backpropagat
 
 ## 14. Inference and FastAPI
 
-`Predictor` loads one checkpoint, optional matching calibration, and the exact evaluation preprocessing. It returns three highest class probabilities, a predicted label, elapsed wall time and an uncertainty flag. An uncalibrated checkpoint always abstains. `decode_image` accepts JPEG, PNG, PPM, WebP or BMP, converts grayscale to RGB, caps bytes and pixels, and turns decoding failures into a clear error. The API maps these to HTTP 422, and responds with 503 when no checkpoint is configured. `GET /health`, `GET /metadata`, `POST /predict` and `POST /explain` support automation; `/` is a small upload-and-preview page. The service is a cropped-sign classifier: it cannot assert that an arbitrary photograph contains a sign.
+`Predictor` loads one checkpoint, optional matching calibration, and the exact evaluation preprocessing. It returns three highest class probabilities, a predicted label, elapsed wall time and an uncertainty flag. An uncalibrated checkpoint always abstains. `decode_image` accepts JPEG, PNG, PPM, WebP or BMP, converts grayscale to RGB, caps bytes and pixels, and turns decoding failures into a clear error. The API maps these to HTTP 422, and responds with 503 when no checkpoint is configured. `POST /preview` converts supported uploads, including PPM, into a browser-readable PNG thumbnail. `GET /health`, `GET /metadata`, `POST /predict` and `POST /explain` support automation; `/` is a small upload-and-preview page. The service is a cropped-sign classifier: it cannot assert that an arbitrary photograph contains a sign.
 
 ## 15. Testing and smoke workflow
 

@@ -1,5 +1,6 @@
 """FastAPI demo. Configure TRAFFIC_SIGNS_CHECKPOINT and optionally CALIBRATION."""
 
+import io
 import logging
 import os
 from pathlib import Path
@@ -48,6 +49,17 @@ def create_app(checkpoint: str | None = None, calibration: str | None = None) ->
         try:
             image = decode_image(await file.read(10 * 1024 * 1024 + 1))
             return app.state.predictor.predict(image)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.post("/preview")
+    async def preview(file: UploadFile = File(...)):
+        try:
+            image = decode_image(await file.read(10 * 1024 * 1024 + 1))
+            image.thumbnail((512, 512))
+            stream = io.BytesIO()
+            image.save(stream, format="PNG")
+            return Response(stream.getvalue(), media_type="image/png")
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
 

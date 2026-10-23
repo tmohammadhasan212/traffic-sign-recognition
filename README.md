@@ -71,7 +71,7 @@ uvicorn api.app:app --host 127.0.0.1 --port 8000
 
 To check the interface immediately after the smoke commands, set the two environment variables to `outputs/smoke/best.pt` and `outputs/smoke/calibration.json`. That checkpoint has seen only a tiny balanced subset; its classifications have no benchmark meaning.
 
-Open `http://127.0.0.1:8000/` for upload, preview, prediction, top three scores and Grad-CAM on ResNet-18. `GET /health`, `GET /metadata`, `POST /predict`, and `POST /explain` are also available. Example:
+Open `http://127.0.0.1:8000/` for upload, preview, prediction, top three scores and Grad-CAM on ResNet-18. The page previews GTSRB PPM files through a PNG conversion endpoint. `GET /health`, `GET /metadata`, `POST /preview`, `POST /predict`, and `POST /explain` are also available. Example:
 
 ```bash
 curl -F 'file=@path/to/cropped_sign.png' http://127.0.0.1:8000/predict

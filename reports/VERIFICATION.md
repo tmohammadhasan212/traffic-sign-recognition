@@ -10,3 +10,7 @@
 - Started Uvicorn on localhost, received `200` from `/health`, uploaded an official test image to `/predict` and received `200` with a three-item probability list, then stopped the server.
 
 Full four-model, three-seed training and final official test evaluation remain pending. Therefore no portfolio accuracy, calibration, robustness, latency or error-analysis claims are made here.
+
+## Browser QA
+
+Using the local FastAPI page with a smoke-trained frozen ResNet checkpoint, a validation PPM sign uploaded and predicted successfully. The first browser pass exposed a broken preview because browsers cannot display PPM directly. The page now uses `POST /preview` to return a PNG thumbnail, and the preview visibly renders. The Grad-CAM overlay is displayed at a readable size. Invalid text uploads produce an `Unreadable image` message and disable Predict until a valid image is selected. Grayscale PNG and a 1200 × 80 PNG also completed prediction and explanation requests. The page now presents an uncertain result as an abstention with a separate top candidate. Browser console errors were absent after the retest. A PNG conversion of the same PPM image yielded the same class and confidence (difference 0.0) in direct inference. These are behavior checks; the smoke checkpoint is too small for accuracy claims.
