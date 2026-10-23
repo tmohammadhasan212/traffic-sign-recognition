@@ -52,7 +52,9 @@ python scripts/evaluate.py --checkpoint outputs/finetune/best.pt --split test
 python scripts/robustness.py --checkpoint outputs/finetune/best.pt --split test
 ```
 
-Validation evaluation writes `calibration.json`; the test command requires this file and checks its checkpoint identity. Evaluation writes `predictions.npz`, `metrics.json`, a reliability diagram, confusion matrix and coverage chart under the run directory. Robustness writes separate JSON and chart files. The training run writes `experiment.json`, `history.json`, and `best.pt`. The experiment file records seed, configuration, Git revision, library versions, device, parameter count and split manifest path. Keep the full generated manifest with the run when sharing results.
+Validation evaluation writes `calibration.json`; the test command requires this file and checks its checkpoint identity. The default selective-accuracy target is 99%; adjust `--target-accuracy` before testing if needed. A target below the model's overall validation accuracy can produce a zero threshold and no abstention. Evaluation writes `predictions.npz`, `metrics.json`, a reliability diagram, confusion matrix and coverage chart under the run directory. Robustness writes separate JSON and chart files. The training run writes `experiment.json`, `history.json`, and `best.pt`. The experiment file records seed, configuration, Git revision, library versions, device, parameter count and split manifest path. Keep the full generated manifest with the run when sharing results.
+
+The measured single-seed CNN run currently used by the local demo is documented in [docs/LOCAL_TRAINED_RUN.md](docs/LOCAL_TRAINED_RUN.md).
 
 For error review, run `python scripts/analyze_errors.py --predictions outputs/finetune/test/predictions.npz --split test --output outputs/finetune/test/errors.json`. For three-seed mean and sample standard deviation, run `python scripts/aggregate_seeds.py outputs/seed2026/test/metrics.json outputs/seed2027/test/metrics.json outputs/seed2028/test/metrics.json --output outputs/finetune/aggregate.json`.
 
@@ -71,7 +73,7 @@ uvicorn api.app:app --host 127.0.0.1 --port 8000
 
 To check the interface immediately after the smoke commands, set the two environment variables to `outputs/smoke/best.pt` and `outputs/smoke/calibration.json`. That checkpoint has seen only a tiny balanced subset; its classifications have no benchmark meaning.
 
-Open `http://127.0.0.1:8000/` for upload, preview, prediction, top three scores and Grad-CAM on ResNet-18. The page previews GTSRB PPM files through a PNG conversion endpoint. `GET /health`, `GET /metadata`, `POST /preview`, `POST /predict`, and `POST /explain` are also available. Example:
+Open `http://127.0.0.1:8000/` for upload, preview, prediction, top three scores and Grad-CAM on either model. The page previews GTSRB PPM files through a PNG conversion endpoint. `GET /health`, `GET /metadata`, `POST /preview`, `POST /predict`, and `POST /explain` are also available. Example:
 
 ```bash
 curl -F 'file=@path/to/cropped_sign.png' http://127.0.0.1:8000/predict

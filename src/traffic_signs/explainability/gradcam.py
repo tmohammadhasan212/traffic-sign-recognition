@@ -1,4 +1,4 @@
-"""Grad-CAM for ResNet-18's last convolutional block."""
+"""Grad-CAM for the final spatial feature block of either model."""
 
 import numpy as np
 import torch
@@ -7,12 +7,16 @@ from PIL import Image
 
 def gradcam(model: torch.nn.Module, tensor: torch.Tensor,
             class_id: int | None = None) -> np.ndarray:
-    if not hasattr(model, "layer4"):
-        raise ValueError("Grad-CAM is supported for ResNet-18 checkpoints")
+    if hasattr(model, "layer4"):
+        layer = model.layer4
+    elif hasattr(model, "features"):
+        layer = model.features[10]
+    else:
+        raise ValueError("Grad-CAM is unsupported for this model")
     activations = []
     gradients = []
-    forward = model.layer4.register_forward_hook(lambda _m, _i, output: activations.append(output))
-    backward = model.layer4.register_full_backward_hook(
+    forward = layer.register_forward_hook(lambda _m, _i, output: activations.append(output))
+    backward = layer.register_full_backward_hook(
         lambda _m, _gi, output: gradients.append(output[0]))
     try:
         model.eval()

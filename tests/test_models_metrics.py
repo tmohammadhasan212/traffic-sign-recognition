@@ -42,6 +42,14 @@ def test_resnet_gradcam_heatmap():
     assert 0 <= heatmap.min() <= heatmap.max() <= 1
 
 
+def test_cnn_gradcam_heatmap():
+    model = create_model("cnn").eval()
+    heatmap = gradcam(model, torch.randn(1, 3, 64, 64))
+    assert heatmap.shape == (64, 64)
+    assert np.isfinite(heatmap).all()
+    assert 0 <= heatmap.min() <= heatmap.max() <= 1
+
+
 def test_metrics_and_calibration():
     labels = np.array([0, 1, 1])
     probs = np.zeros((3, 43))

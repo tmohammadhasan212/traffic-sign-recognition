@@ -18,7 +18,7 @@ parser.add_argument("--checkpoint", type=Path, required=True)
 parser.add_argument("--split", choices=["validation", "test"], required=True)
 parser.add_argument("--calibration", type=Path)
 parser.add_argument("--output", type=Path)
-parser.add_argument("--target-accuracy", type=float, default=0.95)
+parser.add_argument("--target-accuracy", type=float, default=0.99)
 parser.add_argument("--no-latency", action="store_true")
 
 if __name__ == "__main__":
