@@ -1,0 +1,6 @@
+name: smoke
+model: cnn
+epochs: 1
+batch_size: 8
+smoke_limit: 32
+output_dir: outputs/smoke

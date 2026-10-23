@@ -1,0 +1,3 @@
+name: baseline
+model: cnn
+output_dir: outputs/baseline
