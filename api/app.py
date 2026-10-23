@@ -1,5 +1,6 @@
 """FastAPI demo. Configure TRAFFIC_SIGNS_CHECKPOINT and optionally CALIBRATION."""
 
+import logging
 import os
 from pathlib import Path
 
@@ -9,18 +10,27 @@ from fastapi.responses import HTMLResponse, Response
 from traffic_signs.inference.predictor import Predictor, decode_image
 
 DISCLAIMER = "Research/educational demo; never use as a driving safety system."
+LOGGER = logging.getLogger(__name__)
 
 
 def create_app(checkpoint: str | None = None, calibration: str | None = None) -> FastAPI:
     app = FastAPI(title="Traffic Sign Recognition", description=DISCLAIMER)
     checkpoint = checkpoint or os.getenv("TRAFFIC_SIGNS_CHECKPOINT")
     calibration = calibration or os.getenv("TRAFFIC_SIGNS_CALIBRATION")
-    app.state.predictor = (Predictor(Path(checkpoint), Path(calibration) if calibration else None)
-                           if checkpoint else None)
+    app.state.predictor = None
+    app.state.load_error = None
+    if checkpoint:
+        try:
+            app.state.predictor = Predictor(Path(checkpoint), Path(calibration) if calibration else None)
+        except (FileNotFoundError, ValueError, RuntimeError) as exc:
+            LOGGER.error("Model startup failed: %s", exc)
+            app.state.load_error = str(exc)
 
     @app.get("/health")
     def health():
-        return {"status": "ready" if app.state.predictor else "unconfigured",
+        return {"status": "ready" if app.state.predictor else
+                "error" if app.state.load_error else "unconfigured",
+                "detail": app.state.load_error,
                 "disclaimer": DISCLAIMER}
 
     @app.get("/metadata")
@@ -33,7 +43,8 @@ def create_app(checkpoint: str | None = None, calibration: str | None = None) ->
     @app.post("/predict")
     async def predict(file: UploadFile = File(...)):
         if app.state.predictor is None:
-            raise HTTPException(503, "Set TRAFFIC_SIGNS_CHECKPOINT to a trained checkpoint")
+            raise HTTPException(503, app.state.load_error or
+                                "Set TRAFFIC_SIGNS_CHECKPOINT to a trained checkpoint")
         try:
             image = decode_image(await file.read(10 * 1024 * 1024 + 1))
             return app.state.predictor.predict(image)
@@ -43,7 +54,7 @@ def create_app(checkpoint: str | None = None, calibration: str | None = None) ->
     @app.post("/explain")
     async def explain(file: UploadFile = File(...)):
         if app.state.predictor is None:
-            raise HTTPException(503, "Model unavailable")
+            raise HTTPException(503, app.state.load_error or "Model unavailable")
         try:
             image = decode_image(await file.read(10 * 1024 * 1024 + 1))
             return Response(app.state.predictor.explain(image), media_type="image/png")

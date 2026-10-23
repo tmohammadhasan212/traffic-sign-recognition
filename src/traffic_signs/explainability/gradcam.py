@@ -17,9 +17,12 @@ def gradcam(model: torch.nn.Module, tensor: torch.Tensor,
     try:
         model.eval()
         model.zero_grad(set_to_none=True)
-        logits = model(tensor)
+        # Frozen backbones still need an autograd path through their activations.
+        logits = model(tensor.detach().requires_grad_(True))
         target = int(logits.argmax(1)[0]) if class_id is None else class_id
         logits[0, target].backward()
+        if not gradients:
+            raise ValueError("Grad-CAM gradients were unavailable for this model")
         weight = gradients[0].mean(dim=(2, 3), keepdim=True)
         cam = torch.relu((weight * activations[0]).sum(dim=1, keepdim=True))
         cam = torch.nn.functional.interpolate(cam, size=tensor.shape[-2:], mode="bilinear",

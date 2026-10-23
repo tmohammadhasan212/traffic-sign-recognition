@@ -35,6 +35,7 @@ The downloader creates `data/raw/` and `data/split_manifest.json`; both are excl
 ```bash
 python scripts/train.py --config configs/smoke.yaml
 python scripts/evaluate.py --checkpoint outputs/smoke/best.pt --split validation --no-latency
+python scripts/train.py --config configs/smoke_frozen.yaml  # checks pretrained ResNet setup
 
 python scripts/train.py --config configs/baseline.yaml
 python scripts/train.py --config configs/frozen.yaml
@@ -68,6 +69,8 @@ export TRAFFIC_SIGNS_CALIBRATION=outputs/finetune/calibration.json
 uvicorn api.app:app --host 127.0.0.1 --port 8000
 ```
 
+To check the interface immediately after the smoke commands, set the two environment variables to `outputs/smoke/best.pt` and `outputs/smoke/calibration.json`. That checkpoint has seen only a tiny balanced subset; its classifications have no benchmark meaning.
+
 Open `http://127.0.0.1:8000/` for upload, preview, prediction, top three scores and Grad-CAM on ResNet-18. `GET /health`, `GET /metadata`, `POST /predict`, and `POST /explain` are also available. Example:
 
 ```bash
@@ -87,7 +90,7 @@ The validation split is 20% of each training class's **tracks**, seed 2026; the 
 | Fine-tuned ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
 | Robust fine-tuned ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
 
-Full GTSRB experiments and three-seed aggregate results have not yet been run. [The report template](reports/EXPERIMENT_REPORT.md) gives the analysis protocol, including per-class confusion, false predictions and two recurring failure modes. Fill it only from saved predictions. No demo screenshot or GTSRB image is bundled; add one only if source terms permit it.
+The official archive preparation and a one-epoch, 32-row-per-split smoke run were completed locally; see [verification notes](reports/VERIFICATION.md). Full GTSRB experiments and three-seed aggregate results have not yet been run. [The report template](reports/EXPERIMENT_REPORT.md) gives the analysis protocol, including per-class confusion, false predictions and two recurring failure modes. Fill it only from saved predictions. No demo screenshot or GTSRB image is bundled; add one only if source terms permit it.
 
 ## Limits and attribution
 

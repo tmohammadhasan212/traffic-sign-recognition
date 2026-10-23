@@ -7,6 +7,7 @@ from PIL import Image
 
 from traffic_signs.calibration.temperature import choose_threshold, fit_temperature, probabilities
 from traffic_signs.evaluation.metrics import classification_metrics, expected_calibration_error
+from traffic_signs.explainability.gradcam import gradcam
 from traffic_signs.models.factory import create_model, parameter_counts
 from traffic_signs.robustness.corruptions import NAMES, corrupt
 from traffic_signs.training.config import Config
@@ -31,6 +32,14 @@ def test_resnet_forward_without_weight_download():
     assert parameter_counts(model)["trainable"] == 512 * 43 + 43
     with torch.no_grad():
         assert model(torch.zeros(1, 3, 224, 224)).shape == (1, 43)
+
+
+def test_resnet_gradcam_heatmap():
+    model = create_model("resnet18", pretrained=False, frozen=True).eval()
+    heatmap = gradcam(model, torch.randn(1, 3, 224, 224))
+    assert heatmap.shape == (224, 224)
+    assert np.isfinite(heatmap).all()
+    assert 0 <= heatmap.min() <= heatmap.max() <= 1
 
 
 def test_metrics_and_calibration():

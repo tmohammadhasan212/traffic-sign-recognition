@@ -26,8 +26,16 @@ def test_single_image_and_api(tmp_path: Path):
     assert prediction["uncertain"] is True  # No validation calibration provided.
     client = TestClient(create_app(str(checkpoint)))
     assert client.get("/health").json()["status"] == "ready"
+    assert "Traffic sign recognition" in client.get("/").text
     response = client.post("/predict", files={"file": ("image.png", _png(), "image/png")})
     assert response.status_code == 200
     assert response.json()["predicted_class_id"] in range(43)
     invalid = client.post("/predict", files={"file": ("bad.png", b"bad", "image/png")})
     assert invalid.status_code == 422
+
+
+def test_api_reports_missing_checkpoint(tmp_path: Path):
+    client = TestClient(create_app(str(tmp_path / "missing.pt")))
+    assert client.get("/health").json()["status"] == "error"
+    response = client.post("/predict", files={"file": ("image.png", _png(), "image/png")})
+    assert response.status_code == 503
