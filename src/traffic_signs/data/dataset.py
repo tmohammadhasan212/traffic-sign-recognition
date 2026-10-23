@@ -45,7 +45,20 @@ class ManifestDataset(Dataset):
         source = content["test"] if split == "test" else content["training"]
         self.rows = [r for r in source if split == "test" or r["split"] == split]
         if limit is not None:
-            self.rows = self.rows[:limit]
+            if limit <= 0:
+                raise ValueError("limit must be positive")
+            groups = {class_id: [row for row in self.rows if row["class_id"] == class_id]
+                      for class_id in range(43)}
+            balanced = []
+            depth = 0
+            while len(balanced) < min(limit, len(self.rows)):
+                for class_id in range(43):
+                    if depth < len(groups[class_id]):
+                        balanced.append(groups[class_id][depth])
+                        if len(balanced) == limit:
+                            break
+                depth += 1
+            self.rows = balanced
         self.root = root
         self.transform = transform(model, split == "train", robust)
 

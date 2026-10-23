@@ -6,14 +6,11 @@ import platform
 import random
 import subprocess
 import time
+from importlib.metadata import version
 from pathlib import Path
 
-import matplotlib
 import numpy as np
 import torch
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 from torch import nn
 from torch.utils.data import DataLoader
 
@@ -79,7 +76,7 @@ def load_checkpoint(path: Path, device: torch.device):
         raise FileNotFoundError(f"Checkpoint missing: {path}")
     checkpoint = torch.load(path, map_location=device, weights_only=True)
     config = Config(**checkpoint["config"])
-    model = create_model(config.model, pretrained=False, frozen=False)
+    model = create_model(config.model, pretrained=False, frozen=config.frozen)
     try:
         model.load_state_dict(checkpoint["state_dict"])
     except RuntimeError as exc:
@@ -104,10 +101,14 @@ def train(config: Config) -> Path:
     output.mkdir(parents=True, exist_ok=True)
     revision = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
                               check=False).stdout.strip() or "unavailable"
+    split_metadata = json.loads(Path(config.manifest).read_text())
     (output / "experiment.json").write_text(json.dumps({"config": config.dump(), "git_revision": revision,
-        "torch": torch.__version__, "numpy": np.__version__, "python": platform.python_version(),
+        "versions": {name: version(name) for name in
+                     ("torch", "torchvision", "numpy", "Pillow", "scikit-learn")},
+        "python": platform.python_version(),
         "device": str(device), "parameters": parameter_counts(model),
         "split_manifest": str(Path(config.manifest).resolve()),
+        "split_path_sha256": split_metadata["path_sha256"],
         "started_unix": time.time()}, indent=2, default=str))
     best, stale, history = float("inf"), 0, []
     for epoch in range(config.epochs):
@@ -146,6 +147,8 @@ def train(config: Config) -> Path:
                 break
         if scheduler:
             scheduler.step()
+    from traffic_signs.plotting import plt
+
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     epochs = [entry["epoch"] for entry in history]
     axes[0].plot(epochs, [entry["train_loss"] for entry in history], label="Train")

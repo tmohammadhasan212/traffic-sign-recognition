@@ -26,6 +26,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     device = select_device("auto")
     model, config = load_checkpoint(args.checkpoint, device)
+    if args.split == "test" and config.smoke_limit is not None:
+        raise ValueError("Smoke checkpoints cannot be used for final test evaluation")
     calibration = args.calibration or args.checkpoint.parent / "calibration.json"
     output = args.output or args.checkpoint.parent / args.split
     logits, targets = collect(model, loader(config, args.split), device)

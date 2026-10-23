@@ -1,0 +1,8 @@
+name: smoke_frozen
+model: resnet18
+pretrained: true
+frozen: true
+epochs: 1
+batch_size: 4
+smoke_limit: 8
+output_dir: outputs/smoke_frozen

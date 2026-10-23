@@ -6,16 +6,13 @@ import time
 from itertools import pairwise
 from pathlib import Path
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
 from traffic_signs.calibration.temperature import coverage_curve, probabilities
 from traffic_signs.evaluation.metrics import classification_metrics
 from traffic_signs.models.factory import parameter_counts
+from traffic_signs.plotting import plt
 
 
 def cpu_latency(model: torch.nn.Module, image_size: int, runs: int = 50) -> dict:
