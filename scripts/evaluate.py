@@ -4,8 +4,12 @@ import argparse
 import logging
 from pathlib import Path
 
-from traffic_signs.calibration.temperature import (choose_threshold, fit_temperature,
-                                                    probabilities, save_calibration)
+from traffic_signs.calibration.temperature import (
+    choose_threshold,
+    fit_temperature,
+    probabilities,
+    save_calibration,
+)
 from traffic_signs.evaluation.report import write_report
 from traffic_signs.training.engine import collect, load_checkpoint, loader, select_device
 
@@ -40,6 +44,6 @@ if __name__ == "__main__":
         temperature, threshold = parameters["temperature"], parameters["threshold"]
     report = write_report(output, logits, targets, temperature, model, threshold,
                           not args.no_latency)
-    logging.info("%s accuracy %.4f, macro F1 %.4f, ECE %.4f", args.split,
+    logging.getLogger(__name__).info("%s accuracy %.4f, macro F1 %.4f, ECE %.4f", args.split,
                  report["metrics"]["accuracy"], report["metrics"]["macro_f1"],
                  report["metrics"]["ece"])

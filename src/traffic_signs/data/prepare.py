@@ -65,7 +65,10 @@ def scan_test(root: Path, verify_images: bool = True) -> list[dict]:
     base = root / "GTSRB" / "Final_Test" / "Images"
     rows = []
     seen = set()
-    for row in _read_csv(base / "GT-final_test.csv"):
+    annotations = root / "GT-final_test.csv"
+    if not annotations.is_file():
+        annotations = base / "GT-final_test.csv"
+    for row in _read_csv(annotations):
         name = row["Filename"]
         class_id = int(row["ClassId"])
         if Path(name).name != name or not 0 <= class_id < NUM_CLASSES:

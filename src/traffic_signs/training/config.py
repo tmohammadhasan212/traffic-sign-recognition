@@ -42,7 +42,7 @@ class Config:
     def load(cls, path: Path) -> "Config":
         values = yaml.safe_load(path.read_text())
         if not isinstance(values, dict):
-            raise ValueError("Config must be a mapping")
+            raise TypeError("Config must be a mapping")
         return cls(**values)
 
     def dump(self) -> dict:

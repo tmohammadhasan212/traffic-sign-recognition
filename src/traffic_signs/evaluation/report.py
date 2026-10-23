@@ -3,9 +3,11 @@
 import json
 import platform
 import time
+from itertools import pairwise
 from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -37,9 +39,11 @@ def figures(output: Path, probs: np.ndarray, targets: np.ndarray, metrics: dict,
     confidence = probs.max(1)
     correct = probs.argmax(1) == targets
     edges = np.linspace(0, 1, 11)
-    observed = [correct[(confidence >= a) & (confidence < b)].mean()
-                if ((confidence >= a) & (confidence < b)).any() else np.nan
-                for a, b in zip(edges[:-1], edges[1:])]
+    observed = []
+    for index, (low, high) in enumerate(pairwise(edges)):
+        mask = (confidence >= low) & (confidence <= high if index == len(edges) - 2
+                                      else confidence < high)
+        observed.append(correct[mask].mean() if mask.any() else np.nan)
     fig, ax = plt.subplots()
     ax.plot([0, 1], [0, 1], "--", label="Perfect")
     ax.plot((edges[:-1] + edges[1:]) / 2, observed, marker="o", label="Observed")

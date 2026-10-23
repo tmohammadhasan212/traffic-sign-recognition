@@ -7,9 +7,9 @@ import zlib
 from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import numpy as np
 import torch
 
 from traffic_signs.data.dataset import ManifestDataset, open_rgb, transform
@@ -48,7 +48,7 @@ if __name__ == "__main__":
                           "split": args.split, "accuracy": correct / len(dataset),
                           "count": len(dataset)}
                 records.append(record)
-                logging.info("%s", record)
+                logging.getLogger(__name__).info("%s", record)
     (output / "results.json").write_text(json.dumps(records, indent=2))
     fig, ax = plt.subplots()
     clean = records[0]["accuracy"]

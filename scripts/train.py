@@ -19,4 +19,4 @@ if __name__ == "__main__":
         config = replace(config, seed=args.seed)
     if args.output_dir:
         config = replace(config, output_dir=args.output_dir)
-    logging.info("Best checkpoint: %s", train(config))
+    logging.getLogger(__name__).info("Best checkpoint: %s", train(config))

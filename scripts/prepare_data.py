@@ -21,5 +21,5 @@ if __name__ == "__main__":
         download(args.root)
     result = prepare(args.root, args.output, args.seed, args.validation_fraction,
                      not args.allow_subset, not args.skip_image_verification)
-    logging.info("Prepared %d training and %d test rows at %s", len(result["training"]),
+    logging.getLogger(__name__).info("Prepared %d training and %d test rows at %s", len(result["training"]),
                  len(result["test"]), args.output)

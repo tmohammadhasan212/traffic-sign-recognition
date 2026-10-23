@@ -20,7 +20,11 @@ def download(root: Path) -> None:
         archive = root / name
         if not archive.is_file():
             urllib.request.urlretrieve(BASE + name, archive)
-        provenance["archives"][name] = hashlib.sha256(archive.read_bytes()).hexdigest()
+        digest = hashlib.sha256()
+        with archive.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                digest.update(chunk)
+        provenance["archives"][name] = digest.hexdigest()
         with zipfile.ZipFile(archive) as zip_file:
             for member in zip_file.infolist():
                 target = (root / member.filename).resolve()

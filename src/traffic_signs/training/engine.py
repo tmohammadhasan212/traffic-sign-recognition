@@ -8,8 +8,12 @@ import subprocess
 import time
 from pathlib import Path
 
+import matplotlib
 import numpy as np
 import torch
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 from torch import nn
 from torch.utils.data import DataLoader
 
@@ -142,4 +146,16 @@ def train(config: Config) -> Path:
                 break
         if scheduler:
             scheduler.step()
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    epochs = [entry["epoch"] for entry in history]
+    axes[0].plot(epochs, [entry["train_loss"] for entry in history], label="Train")
+    axes[0].plot(epochs, [entry["validation_loss"] for entry in history], label="Validation")
+    axes[0].set(xlabel="Epoch", ylabel="Cross-entropy", title="Loss")
+    axes[1].plot(epochs, [entry["train_accuracy"] for entry in history], label="Train")
+    axes[1].plot(epochs, [entry["validation_accuracy"] for entry in history], label="Validation")
+    axes[1].set(xlabel="Epoch", ylabel="Accuracy", title="Accuracy")
+    for axis in axes:
+        axis.legend()
+    fig.savefig(output / "training_curves.png", bbox_inches="tight")
+    plt.close(fig)
     return output / "best.pt"
