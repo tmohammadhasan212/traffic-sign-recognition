@@ -12,7 +12,7 @@ A reproducible PyTorch system for **43-class classification of cropped traffic s
 | Evaluation | Accuracy, macro F1, 43-class precision/recall and confusion matrix, ECE, latency and model size |
 | Uncertainty | Validation-only temperature and threshold fitting; coverage versus selective accuracy |
 | Robustness | Blur, brightness, contrast, noise, rotation and occlusion at three severities |
-| Explanations | ResNet-18 Grad-CAM overlay; interpretation is illustrative, never causal proof |
+| Explanations | CNN and ResNet-18 Grad-CAM overlays; interpretation is illustrative, never causal proof |
 | Interfaces | Prediction CLI, FastAPI endpoints, upload and preview page |
 
 `src/traffic_signs/` holds reusable logic; `scripts/` holds commands; `api/` holds the service; `configs/` holds runs; `tests/` holds synthetic fixtures; `reports/` holds report templates and generated outputs. See [DATA.md](DATA.md) for provenance and [the implementation guide](docs/IMPLEMENTATION_GUIDE.md) for the complete design.
@@ -87,12 +87,12 @@ The validation split is 20% of each training class's **tracks**, seed 2026; the 
 
 | Model | Seed(s) | Test accuracy | Macro F1 | ECE | Corruption summary |
 |---|---|---|---|---|---|
-| Scratch CNN | Not run | Not measured | Not measured | Not measured | Not measured |
+| Scratch CNN | 2026 | 96.79% | 95.47% | 0.0088 | Not measured |
 | Frozen ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
 | Fine-tuned ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
 | Robust fine-tuned ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
 
-The official archive preparation and a one-epoch, 32-row-per-split smoke run were completed locally; see [verification notes](reports/VERIFICATION.md). Full GTSRB experiments and three-seed aggregate results have not yet been run. [The report template](reports/EXPERIMENT_REPORT.md) gives the analysis protocol, including per-class confusion, false predictions and two recurring failure modes. Fill it only from saved predictions. No demo screenshot or GTSRB image is bundled; add one only if source terms permit it.
+The single-seed full-data CNN run is detailed in [the local run report](docs/LOCAL_TRAINED_RUN.md). At its validation-selected threshold, official test coverage was 93.55% and accuracy among accepted predictions was 99.14%. Earlier data and smoke checks are in the [verification notes](reports/VERIFICATION.md). The other model runs, corruption comparison, and three-seed aggregate results remain outstanding. [The report template](reports/EXPERIMENT_REPORT.md) gives the analysis protocol, including per-class confusion, false predictions and two recurring failure modes. Fill it only from saved predictions. No demo screenshot or GTSRB image is bundled; add one only if source terms permit it.
 
 ## Limits and attribution
 
