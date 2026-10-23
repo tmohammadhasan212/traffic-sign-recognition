@@ -1,0 +1,1 @@
+{"seed": 2026, "validation_fraction": 0.2, "algorithm": "per-class track shuffle; sorted track IDs; numpy default_rng; rounded validation track count"}
