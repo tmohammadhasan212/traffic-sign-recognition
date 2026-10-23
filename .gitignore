@@ -8,9 +8,9 @@ __pycache__/
 .idea/
 .vscode/
 .env*
-data/
-outputs/
-reports/generated/
+/data/
+/outputs/
+/reports/generated/
 *.pt
 *.pth
 *.ckpt
