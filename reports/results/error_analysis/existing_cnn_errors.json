@@ -1,0 +1,328 @@
+{
+  "incorrect": 406,
+  "total": 12630,
+  "most_confident_errors": [
+    {
+      "path": "GTSRB/Final_Test/Images/00760.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 13.776100158691406
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05262.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 11.182113647460938
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03655.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 10.400984764099121
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11616.ppm",
+      "true_id": 38,
+      "true_name": "Keep right",
+      "predicted_id": 37,
+      "predicted_name": "Go straight or left",
+      "logit_margin": 9.841450691223145
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09076.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.781220436096191
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08051.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.663485527038574
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05491.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.337845802307129
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02494.ppm",
+      "true_id": 2,
+      "true_name": "Speed limit (50 km/h)",
+      "predicted_id": 1,
+      "predicted_name": "Speed limit (30 km/h)",
+      "logit_margin": 9.275910377502441
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09539.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.216732025146484
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01573.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.10831069946289
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07468.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.973800659179688
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/12396.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 9,
+      "predicted_name": "No passing",
+      "logit_margin": 8.93218994140625
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02397.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.82998275756836
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03296.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.614870071411133
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08198.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.579156875610352
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00858.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.570433616638184
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02258.ppm",
+      "true_id": 12,
+      "true_name": "Priority road",
+      "predicted_id": 15,
+      "predicted_name": "No vehicles",
+      "logit_margin": 8.467729568481445
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10398.ppm",
+      "true_id": 21,
+      "true_name": "Double curve",
+      "predicted_id": 11,
+      "predicted_name": "Right-of-way at the next intersection",
+      "logit_margin": 8.246675491333008
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00087.ppm",
+      "true_id": 7,
+      "true_name": "Speed limit (100 km/h)",
+      "predicted_id": 8,
+      "predicted_name": "Speed limit (120 km/h)",
+      "logit_margin": 8.10159683227539
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08552.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.049881935119629
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01131.ppm",
+      "true_id": 8,
+      "true_name": "Speed limit (120 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.019948959350586
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06090.ppm",
+      "true_id": 30,
+      "true_name": "Beware of ice/snow",
+      "predicted_id": 20,
+      "predicted_name": "Dangerous curve to the right",
+      "logit_margin": 7.557702541351318
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02538.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.512423515319824
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11016.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 7.496017932891846
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06980.ppm",
+      "true_id": 22,
+      "true_name": "Bumpy road",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 7.274136543273926
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10584.ppm",
+      "true_id": 30,
+      "true_name": "Beware of ice/snow",
+      "predicted_id": 20,
+      "predicted_name": "Dangerous curve to the right",
+      "logit_margin": 7.210876941680908
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08788.ppm",
+      "true_id": 7,
+      "true_name": "Speed limit (100 km/h)",
+      "predicted_id": 8,
+      "predicted_name": "Speed limit (120 km/h)",
+      "logit_margin": 7.159631729125977
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05182.ppm",
+      "true_id": 12,
+      "true_name": "Priority road",
+      "predicted_id": 15,
+      "predicted_name": "No vehicles",
+      "logit_margin": 7.121739864349365
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11741.ppm",
+      "true_id": 34,
+      "true_name": "Turn left ahead",
+      "predicted_id": 37,
+      "predicted_name": "Go straight or left",
+      "logit_margin": 6.9178876876831055
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04271.ppm",
+      "true_id": 6,
+      "true_name": "End of speed limit (80 km/h)",
+      "predicted_id": 20,
+      "predicted_name": "Dangerous curve to the right",
+      "logit_margin": 6.493465423583984
+    }
+  ],
+  "confusion_pairs": [
+    [
+      "7->8",
+      33
+    ],
+    [
+      "17->13",
+      27
+    ],
+    [
+      "3->5",
+      27
+    ],
+    [
+      "14->29",
+      26
+    ],
+    [
+      "18->26",
+      17
+    ],
+    [
+      "8->5",
+      15
+    ],
+    [
+      "23->19",
+      14
+    ],
+    [
+      "2->1",
+      13
+    ],
+    [
+      "30->20",
+      12
+    ],
+    [
+      "30->11",
+      10
+    ],
+    [
+      "4->1",
+      10
+    ],
+    [
+      "21->12",
+      10
+    ],
+    [
+      "12->15",
+      10
+    ],
+    [
+      "21->11",
+      9
+    ],
+    [
+      "6->20",
+      9
+    ],
+    [
+      "30->23",
+      8
+    ],
+    [
+      "11->30",
+      7
+    ],
+    [
+      "39->33",
+      6
+    ],
+    [
+      "23->30",
+      6
+    ],
+    [
+      "22->20",
+      6
+    ]
+  ]
+}

@@ -2,6 +2,28 @@
 
 A reproducible PyTorch system for **43-class classification of cropped traffic signs**. It compares a compact CNN with frozen and fine-tuned ResNet-18 models, measures corruption robustness, calibrates probabilities, and abstains on low-confidence predictions. A FastAPI page and JSON API provide a lightweight demo. **Research and education only; never use as a driving safety system.**
 
+## Research question and current evidence
+
+Does ImageNet transfer learning and robustness augmentation improve clean and corrupted
+traffic-sign classification? The controlled four-model, three-seed comparison is **not
+complete**. A previous single-seed scratch CNN achieved 96.79% accuracy and 95.47%
+macro F1 on the official test set; no ranking of the four models is yet supported.
+The test set was already inspected for that run, so it is no longer a pristine holdout.
+See the [study protocol and hypotheses](reports/EXPERIMENT_REPORT.md).
+
+To run the fixed study after installing pretrained weights and preparing the dataset:
+
+```bash
+python scripts/run_full_experiments.py train
+python scripts/run_full_experiments.py validation
+# Freeze the protocol before running the following final evaluation:
+python scripts/run_full_experiments.py test
+```
+
+The runner uses 2026, 2027 and 2028, stores each run separately, refuses to resume
+incomplete directories, and requires all checkpoints and validation calibrations before
+test evaluation. It uses a common corruption seed for paired model comparisons.
+
 ## What is here
 
 | Component | Implementation |
