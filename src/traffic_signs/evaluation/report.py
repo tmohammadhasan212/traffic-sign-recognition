@@ -10,7 +10,11 @@ import numpy as np
 import torch
 
 from traffic_signs.calibration.temperature import coverage_curve, probabilities
-from traffic_signs.evaluation.metrics import classification_metrics
+from traffic_signs.evaluation.metrics import (
+    classification_metrics,
+    negative_log_likelihood,
+    wilson_interval,
+)
 from traffic_signs.models.factory import parameter_counts
 from traffic_signs.plotting import plt
 
@@ -31,19 +35,22 @@ def cpu_latency(model: torch.nn.Module, image_size: int, runs: int = 50) -> dict
 
 
 def figures(output: Path, probs: np.ndarray, targets: np.ndarray, metrics: dict,
-            curve: list[dict]) -> None:
+            curve: list[dict], raw_probs: np.ndarray | None = None) -> None:
     output.mkdir(parents=True, exist_ok=True)
-    confidence = probs.max(1)
-    correct = probs.argmax(1) == targets
     edges = np.linspace(0, 1, 11)
-    observed = []
-    for index, (low, high) in enumerate(pairwise(edges)):
-        mask = (confidence >= low) & (confidence <= high if index == len(edges) - 2
-                                      else confidence < high)
-        observed.append(correct[mask].mean() if mask.any() else np.nan)
     fig, ax = plt.subplots()
     ax.plot([0, 1], [0, 1], "--", label="Perfect")
-    ax.plot((edges[:-1] + edges[1:]) / 2, observed, marker="o", label="Observed")
+    for label, values in (("Raw", raw_probs), ("Calibrated", probs)):
+        if values is None:
+            continue
+        confidence = values.max(1)
+        correct = values.argmax(1) == targets
+        observed = []
+        for index, (low, high) in enumerate(pairwise(edges)):
+            mask = (confidence >= low) & (confidence <= high if index == len(edges) - 2
+                                          else confidence < high)
+            observed.append(correct[mask].mean() if mask.any() else np.nan)
+        ax.plot((edges[:-1] + edges[1:]) / 2, observed, marker="o", label=label)
     ax.set(xlabel="Confidence", ylabel="Accuracy", title="Reliability")
     ax.legend()
     fig.savefig(output / "reliability.png", bbox_inches="tight")
@@ -69,9 +76,18 @@ def write_report(output: Path, logits: torch.Tensor, targets: torch.Tensor,
     probs = probabilities(logits, temperature)
     labels = targets.numpy()
     metrics = classification_metrics(probs, labels)
+    raw_probs = probabilities(logits, 1.0)
+    raw_metrics = classification_metrics(raw_probs, labels)
+    calibration = {"raw_ece": raw_metrics["ece"], "calibrated_ece": metrics["ece"],
+                   "raw_nll": negative_log_likelihood(raw_probs, labels),
+                   "calibrated_nll": negative_log_likelihood(probs, labels)}
     curve = coverage_curve(probs, labels)
     accepted = probs.max(1) >= threshold
-    result = {"metrics": metrics, "temperature": temperature, "threshold": threshold,
+    correct = probs.argmax(1) == labels
+    result = {"metrics": metrics, "calibration": calibration,
+              "accuracy_wilson_95": wilson_interval(int(correct.sum()), len(labels)),
+              "selected_accuracy_wilson_95": wilson_interval(
+                  int(correct[accepted].sum()), int(accepted.sum())), "temperature": temperature, "threshold": threshold,
               "selected_coverage": float(accepted.mean()),
               "selected_accuracy": float((probs.argmax(1)[accepted] == labels[accepted]).mean())
               if accepted.any() else None,
@@ -79,6 +95,6 @@ def write_report(output: Path, logits: torch.Tensor, targets: torch.Tensor,
               "model_size_bytes": sum(p.numel() * p.element_size() for p in model.parameters())}
     if include_latency:
         result["cpu_latency"] = cpu_latency(model, 64 if hasattr(model, "features") else 224)
-    figures(output, probs, labels, metrics, curve)
+    figures(output, probs, labels, metrics, curve, raw_probs)
     (output / "metrics.json").write_text(json.dumps(result, indent=2))
     return result

@@ -110,6 +110,7 @@ def train(config: Config) -> Path:
         "split_manifest": str(Path(config.manifest).resolve()),
         "split_path_sha256": split_metadata["path_sha256"],
         "started_unix": time.time()}, indent=2, default=str))
+    started = time.monotonic()
     best, stale, history = float("inf"), 0, []
     for epoch in range(config.epochs):
         model.train()
@@ -161,4 +162,10 @@ def train(config: Config) -> Path:
         axis.legend()
     fig.savefig(output / "training_curves.png", bbox_inches="tight")
     plt.close(fig)
+    metadata_path = output / "experiment.json"
+    metadata = json.loads(metadata_path.read_text())
+    metadata.update({"training_duration_seconds": time.monotonic() - started,
+                     "best_epoch": min(history, key=lambda row: row["validation_loss"])["epoch"],
+                     "best_validation_loss": best, "hardware": platform.platform()})
+    metadata_path.write_text(json.dumps(metadata, indent=2))
     return output / "best.pt"

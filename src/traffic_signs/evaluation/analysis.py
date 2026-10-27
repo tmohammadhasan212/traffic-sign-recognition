@@ -35,12 +35,39 @@ def error_cases(predictions: Path, manifest: Path, split: str, limit: int = 30) 
 
 
 def aggregate(paths: list[Path]) -> dict:
+    """Aggregate independent seeds of the same configuration and split manifest."""
     if len(paths) < 3:
         raise ValueError("Supply at least three independent seed reports")
-    reports = [json.loads(path.read_text()) for path in paths]
-    result = {}
-    for metric in ("accuracy", "macro_f1", "ece"):
-        values = np.array([r["metrics"][metric] for r in reports])
-        result[metric] = {"mean": float(values.mean()), "std": float(values.std(ddof=1)),
-                          "values": values.tolist()}
+    reports, identities, seeds = [], [], []
+    for path in paths:
+        metadata = json.loads((path.parent.parent / "experiment.json").read_text())
+        config = metadata["config"].copy()
+        seeds.append(config.pop("seed"))
+        config.pop("output_dir")
+        identities.append((config, metadata["split_path_sha256"]))
+        reports.append(json.loads(path.read_text()))
+    if len(set(seeds)) != len(seeds):
+        raise ValueError("Duplicate seeds")
+    if any(identity != identities[0] for identity in identities[1:]):
+        raise ValueError("Incompatible configurations or split manifests")
+    result = {"seeds": seeds, "split_path_sha256": identities[0][1]}
+    fields = {"accuracy": ("metrics", "accuracy"), "macro_f1": ("metrics", "macro_f1"),
+              "ece": ("metrics", "ece"), "raw_ece": ("calibration", "raw_ece"),
+              "raw_nll": ("calibration", "raw_nll"),
+              "calibrated_nll": ("calibration", "calibrated_nll"),
+              "temperature": ("temperature",), "threshold": ("threshold",),
+              "coverage": ("selected_coverage",), "selective_accuracy": ("selected_accuracy",),
+              "latency_ms": ("cpu_latency", "median_ms")}
+    for metric, keys in fields.items():
+        values = []
+        for report in reports:
+            value = report
+            for key in keys:
+                value = value.get(key) if isinstance(value, dict) else None
+            values.append(value)
+        if any(value is None for value in values):
+            continue
+        array = np.array(values, dtype=float)
+        result[metric] = {"mean": float(array.mean()), "std": float(array.std(ddof=1)),
+                          "values": dict(zip(map(str, seeds), array.tolist()))}
     return result
