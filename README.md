@@ -2,27 +2,51 @@
 
 A reproducible PyTorch system for **43-class classification of cropped traffic signs**. It compares a compact CNN with frozen and fine-tuned ResNet-18 models, measures corruption robustness, calibrates probabilities, and abstains on low-confidence predictions. A FastAPI page and JSON API provide a lightweight demo. **Research and education only; never use as a driving safety system.**
 
-## Research question and current evidence
+## Research question and results
 
-Does ImageNet transfer learning and robustness augmentation improve clean and corrupted
-traffic-sign classification? The controlled four-model, three-seed comparison is **not
-complete**. A previous single-seed scratch CNN achieved 96.79% accuracy and 95.47%
-macro F1 on the official test set; no ranking of the four models is yet supported.
-The test set was already inspected for that run, so it is no longer a pristine holdout.
-See the [study protocol and hypotheses](reports/EXPERIMENT_REPORT.md).
+Does ImageNet transfer learning and robustness-oriented augmentation improve
+classification of cropped traffic signs? We compared four models on the same
+track-disjoint GTSRB split with three training seeds and validation-only
+calibration. Fine-tuning substantially outperformed a frozen backbone; robust
+augmentation improved several corruption families but hurt Gaussian-noise
+accuracy. An earlier CNN test result had already been inspected, so the official
+test set was not a pristine holdout for this study.
 
-To run the fixed study after installing pretrained weights and preparing the dataset:
+Mean ± sample standard deviation across seeds 2026–2028:
+
+| Model | Test accuracy | Macro F1 | Calibrated ECE | Selective accuracy | Coverage | Params | CPU latency |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Scratch CNN | 95.63 ± 0.48% | 94.17 ± 0.72% | 0.0066 ± 0.0016 | **99.13 ± 0.23%** | 90.25 ± 1.64% | **0.629M** | **1.06 ± 0.04 ms** |
+| Frozen ResNet-18 | 75.59 ± 0.26% | 68.62 ± 0.59% | 0.0212 ± 0.0022 | 97.51 ± 0.29% | 37.01 ± 1.90% | 11.199M | 13.08 ± 1.23 ms |
+| Fine-tuned ResNet-18 | 98.75 ± 0.27% | 98.27 ± 0.66% | **0.0026 ± 0.0009** | 98.81 ± 0.18% | **99.91 ± 0.14%** | 11.199M | 11.40 ± 0.48 ms |
+| Robust ResNet-18 | **98.80 ± 0.15%** | **98.47 ± 0.30%** | 0.0040 ± 0.0001 | 98.85 ± 0.12% | 99.90 ± 0.08% | 11.199M | 12.60 ± 1.73 ms |
+
+Bold marks the best observed mean, not a statistical significance claim. CPU
+latency excludes preprocessing and is hardware-specific. The selective threshold
+was fitted on validation; the table does not imply a safety guarantee.
+
+![Test accuracy across three seeds](reports/results/figures/accuracy_comparison.png)
+![Corruption comparison](reports/results/figures/robustness_comparison.png)
+
+See the [experiment report](reports/EXPERIMENT_REPORT.md),
+[individual and aggregate results](reports/results/final_summary.json), and
+[error analysis](reports/results/error_analysis/). This is **cropped-sign
+classification**, not road-scene object detection.
+
+To reproduce after preparing the dataset and pretrained weights:
 
 ```bash
 python scripts/run_full_experiments.py train
 python scripts/run_full_experiments.py validation
 # Freeze the protocol before running the following final evaluation:
 python scripts/run_full_experiments.py test
+python scripts/summarize_study.py
+python scripts/create_study_figures.py
 ```
 
-The runner uses 2026, 2027 and 2028, stores each run separately, refuses to resume
-incomplete directories, and requires all checkpoints and validation calibrations before
-test evaluation. It uses a common corruption seed for paired model comparisons.
+The runner stores each seed separately, refuses to resume incomplete directories,
+and requires every checkpoint and validation calibration before test evaluation.
+It uses one corruption seed for paired model comparisons.
 
 ## What is here
 
@@ -37,7 +61,7 @@ test evaluation. It uses a common corruption seed for paired model comparisons.
 | Explanations | CNN and ResNet-18 Grad-CAM overlays; interpretation is illustrative, never causal proof |
 | Interfaces | Prediction CLI, FastAPI endpoints, upload and preview page |
 
-`src/traffic_signs/` holds reusable logic; `scripts/` holds commands; `api/` holds the service; `configs/` holds runs; `tests/` holds synthetic fixtures; `reports/` holds report templates and generated outputs. See [DATA.md](DATA.md) for provenance and [the implementation guide](docs/IMPLEMENTATION_GUIDE.md) for the complete design.
+`src/traffic_signs/` holds reusable logic; `scripts/` holds commands; `api/` holds the service; `configs/` holds runs; `tests/` holds synthetic fixtures; `reports/` holds the experiment report and lightweight results. See [DATA.md](DATA.md) for provenance and [the implementation guide](docs/IMPLEMENTATION_GUIDE.md) for the complete design.
 
 ## Setup
 
@@ -105,19 +129,14 @@ The API returns a predicted name and ID, confidence, top three probabilities, un
 
 ## Method and results
 
-The validation split is 20% of each training class's **tracks**, seed 2026; the official test set is untouched through development. The final protocol uses the same preprocessing and metric implementation for every model. Calibration is fitted on validation logits and never refitted on test logits. Corruptions are applied only to validation or test rows and logged with severity and seed. CPU latency uses batch size one, ten warmups, 50 measured runs, and reports the median and hardware.
-
-| Model | Seed(s) | Test accuracy | Macro F1 | ECE | Corruption summary |
-|---|---|---|---|---|---|
-| Scratch CNN | 2026 | 96.79% | 95.47% | 0.0088 | Not measured |
-| Frozen ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
-| Fine-tuned ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
-| Robust fine-tuned ResNet-18 | Not run | Not measured | Not measured | Not measured | Not measured |
-
-The single-seed full-data CNN run is detailed in [the local run report](docs/LOCAL_TRAINED_RUN.md). At its validation-selected threshold, official test coverage was 93.55% and accuracy among accepted predictions was 99.14%. Earlier data and smoke checks are in the [verification notes](reports/VERIFICATION.md). The other model runs, corruption comparison, and three-seed aggregate results remain outstanding. [The report template](reports/EXPERIMENT_REPORT.md) gives the analysis protocol, including per-class confusion, false predictions and two recurring failure modes. Fill it only from saved predictions. No demo screenshot or GTSRB image is bundled; add one only if source terms permit it.
+The split keeps physical sign tracks disjoint between training and validation.
+The test set was inspected in an earlier CNN run; the report explains this
+limitation. Temperature and selective thresholds are fitted on validation only.
+The detailed [experiment report](reports/EXPERIMENT_REPORT.md) includes the
+corruption results, hypotheses, calibration, selection protocol and errors.
 
 ## Limits and attribution
 
 This is classification of **cropped signs**, not detection in road scenes. Synthetic corruption families approximate some degradations but do not measure all weather or camera behavior. Confidence thresholding cannot guarantee safety or detect all unfamiliar inputs. Grad-CAM can emphasize background or borders, so overlays require cautious reading. Training and deployment data may differ by country, sign design and camera. The code is MIT licensed; dataset rights remain with its authors. GTSRB: Stallkamp, Schlipsing, Salmen and Igel, [official public archive](https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/published-archive.html). ResNet-18 weights are provided by torchvision; review their source terms when redistributing anything derived from them.
 
-Run `pytest` and `ruff check .` for local checks. Future work: evaluate out-of-distribution sets, stronger corruptions and interval estimates for selective accuracy.
+Run `pytest` and `ruff check .` for local checks. Future work includes external test sets and controlled padding and ROI ablations.
