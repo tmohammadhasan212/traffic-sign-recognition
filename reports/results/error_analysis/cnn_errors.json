@@ -1,0 +1,414 @@
+{
+  "incorrect": 607,
+  "total": 12630,
+  "most_confident_errors": [
+    {
+      "path": "GTSRB/Final_Test/Images/00760.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 10.771177291870117
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09076.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.563103675842285
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03655.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.062420845031738
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08051.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.759627342224121
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02538.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.807867050170898
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07886.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 22,
+      "predicted_name": "Bumpy road",
+      "logit_margin": 7.734684467315674
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04011.ppm",
+      "true_id": 30,
+      "true_name": "Beware of ice/snow",
+      "predicted_id": 20,
+      "predicted_name": "Dangerous curve to the right",
+      "logit_margin": 7.309450149536133
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00496.ppm",
+      "true_id": 30,
+      "true_name": "Beware of ice/snow",
+      "predicted_id": 11,
+      "predicted_name": "Right-of-way at the next intersection",
+      "logit_margin": 7.25465202331543
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05262.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.9757795333862305
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07468.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.814602851867676
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09638.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.764788627624512
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07330.ppm",
+      "true_id": 7,
+      "true_name": "Speed limit (100 km/h)",
+      "predicted_id": 8,
+      "predicted_name": "Speed limit (120 km/h)",
+      "logit_margin": 6.719824314117432
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00858.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.6712646484375
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02494.ppm",
+      "true_id": 2,
+      "true_name": "Speed limit (50 km/h)",
+      "predicted_id": 1,
+      "predicted_name": "Speed limit (30 km/h)",
+      "logit_margin": 6.64963436126709
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09539.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.374357223510742
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08552.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.338056564331055
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05977.ppm",
+      "true_id": 7,
+      "true_name": "Speed limit (100 km/h)",
+      "predicted_id": 8,
+      "predicted_name": "Speed limit (120 km/h)",
+      "logit_margin": 6.331279754638672
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01573.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.270937919616699
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08627.ppm",
+      "true_id": 7,
+      "true_name": "Speed limit (100 km/h)",
+      "predicted_id": 8,
+      "predicted_name": "Speed limit (120 km/h)",
+      "logit_margin": 6.259751319885254
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00859.ppm",
+      "true_id": 11,
+      "true_name": "Right-of-way at the next intersection",
+      "predicted_id": 23,
+      "predicted_name": "Slippery road",
+      "logit_margin": 6.253958702087402
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07003.ppm",
+      "true_id": 7,
+      "true_name": "Speed limit (100 km/h)",
+      "predicted_id": 8,
+      "predicted_name": "Speed limit (120 km/h)",
+      "logit_margin": 6.216208457946777
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06054.ppm",
+      "true_id": 11,
+      "true_name": "Right-of-way at the next intersection",
+      "predicted_id": 27,
+      "predicted_name": "Pedestrians",
+      "logit_margin": 6.0450439453125
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10782.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 22,
+      "predicted_name": "Bumpy road",
+      "logit_margin": 6.005521297454834
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06901.ppm",
+      "true_id": 22,
+      "true_name": "Bumpy road",
+      "predicted_id": 29,
+      "predicted_name": "Bicycles crossing",
+      "logit_margin": 5.605279445648193
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05491.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 5.535043716430664
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01079.ppm",
+      "true_id": 21,
+      "true_name": "Double curve",
+      "predicted_id": 11,
+      "predicted_name": "Right-of-way at the next intersection",
+      "logit_margin": 5.5035400390625
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00430.ppm",
+      "true_id": 11,
+      "true_name": "Right-of-way at the next intersection",
+      "predicted_id": 23,
+      "predicted_name": "Slippery road",
+      "logit_margin": 5.487035751342773
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07578.ppm",
+      "true_id": 22,
+      "true_name": "Bumpy road",
+      "predicted_id": 29,
+      "predicted_name": "Bicycles crossing",
+      "logit_margin": 5.3264946937561035
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05543.ppm",
+      "true_id": 14,
+      "true_name": "Stop",
+      "predicted_id": 29,
+      "predicted_name": "Bicycles crossing",
+      "logit_margin": 5.284231662750244
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08198.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 5.268895149230957
+    }
+  ],
+  "confusion_pairs": [
+    [
+      "7->8",
+      70
+    ],
+    [
+      "17->15",
+      28
+    ],
+    [
+      "21->11",
+      27
+    ],
+    [
+      "11->23",
+      26
+    ],
+    [
+      "3->5",
+      26
+    ],
+    [
+      "18->26",
+      24
+    ],
+    [
+      "14->29",
+      20
+    ],
+    [
+      "1->2",
+      19
+    ],
+    [
+      "23->19",
+      17
+    ],
+    [
+      "18->30",
+      15
+    ],
+    [
+      "38->19",
+      13
+    ],
+    [
+      "11->27",
+      13
+    ],
+    [
+      "23->3",
+      11
+    ],
+    [
+      "12->13",
+      11
+    ],
+    [
+      "8->5",
+      10
+    ],
+    [
+      "4->2",
+      10
+    ],
+    [
+      "30->20",
+      9
+    ],
+    [
+      "12->2",
+      8
+    ],
+    [
+      "6->13",
+      8
+    ],
+    [
+      "7->5",
+      8
+    ]
+  ],
+  "selected_seed": 2027,
+  "selection_rule": "lowest best validation loss within model",
+  "lowest_recall_per_class": [
+    [
+      21,
+      0.6888888888888889
+    ],
+    [
+      23,
+      0.7733333333333333
+    ],
+    [
+      7,
+      0.8244444444444444
+    ],
+    [
+      30,
+      0.8266666666666667
+    ],
+    [
+      18,
+      0.8307692307692308
+    ],
+    [
+      6,
+      0.8666666666666667
+    ],
+    [
+      11,
+      0.8761904761904762
+    ],
+    [
+      0,
+      0.8833333333333333
+    ],
+    [
+      24,
+      0.8888888888888888
+    ],
+    [
+      22,
+      0.9083333333333333
+    ]
+  ],
+  "lowest_precision_per_class": [
+    [
+      19,
+      0.594059405940594
+    ],
+    [
+      29,
+      0.7368421052631579
+    ],
+    [
+      20,
+      0.7377049180327869
+    ],
+    [
+      27,
+      0.7631578947368421
+    ],
+    [
+      23,
+      0.7891156462585034
+    ],
+    [
+      26,
+      0.8325581395348837
+    ],
+    [
+      8,
+      0.8406909788867563
+    ],
+    [
+      32,
+      0.8571428571428571
+    ],
+    [
+      21,
+      0.8611111111111112
+    ],
+    [
+      15,
+      0.8672199170124482
+    ]
+  ]
+}

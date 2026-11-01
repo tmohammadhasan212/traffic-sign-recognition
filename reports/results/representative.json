@@ -1,0 +1,11 @@
+{
+  "model": "finetuned_resnet18",
+  "seed": 2028,
+  "rule": "lowest mean validation loss across models, then lowest validation loss seed",
+  "model_validation_losses": {
+    "cnn": 0.17243090768655142,
+    "frozen_resnet18": 0.6572047273317972,
+    "finetuned_resnet18": 0.042781652261813484,
+    "robust_resnet18": 0.04956009363134702
+  }
+}

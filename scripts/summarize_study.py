@@ -29,6 +29,17 @@ def summarize(root: Path) -> dict:
             if config["seed"] != seed or actual != expected_config:
                 raise ValueError(f"Unexpected model or seed configuration: {run}")
         summary = aggregate([run / "test/metrics.json" for run in runs])
+        summary["per_seed_details"] = {}
+        for run, seed in zip(runs, SEEDS):
+            report = json.loads((run / "test/metrics.json").read_text())
+            meta = json.loads((run / "experiment.json").read_text())
+            summary["per_seed_details"][str(seed)] = {
+                key: report[key] for key in ("accuracy_wilson_95", "selected_accuracy_wilson_95",
+                                             "parameters", "model_size_bytes") if key in report}
+            for key in ("best_epoch", "best_validation_loss", "training_duration_seconds",
+                        "git_revision", "device"):
+                if key in meta:
+                    summary["per_seed_details"][str(seed)][key] = meta[key]
         conditions = []
         for run in runs:
             records = json.loads((run / "robustness_test/results.json").read_text())

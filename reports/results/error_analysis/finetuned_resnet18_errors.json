@@ -1,0 +1,414 @@
+{
+  "incorrect": 197,
+  "total": 12630,
+  "most_confident_errors": [
+    {
+      "path": "GTSRB/Final_Test/Images/03296.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.500194549560547
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03960.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 6.442505836486816
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07725.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 6.419571876525879
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08051.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.395005226135254
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00050.ppm",
+      "true_id": 25,
+      "true_name": "Road work",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 6.273665428161621
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02342.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 6.271879196166992
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05149.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 5.702230930328369
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/12616.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 5.657606601715088
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07578.ppm",
+      "true_id": 22,
+      "true_name": "Bumpy road",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 5.146954536437988
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02397.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 4.743671417236328
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02379.ppm",
+      "true_id": 12,
+      "true_name": "Priority road",
+      "predicted_id": 13,
+      "predicted_name": "Yield",
+      "logit_margin": 4.637885093688965
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04130.ppm",
+      "true_id": 39,
+      "true_name": "Keep left",
+      "predicted_id": 38,
+      "predicted_name": "Keep right",
+      "logit_margin": 4.595223426818848
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05180.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 4.343219757080078
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10971.ppm",
+      "true_id": 36,
+      "true_name": "Go straight or right",
+      "predicted_id": 40,
+      "predicted_name": "Roundabout mandatory",
+      "logit_margin": 4.276558876037598
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11089.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 4.257296562194824
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03739.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 4.1992950439453125
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04377.ppm",
+      "true_id": 1,
+      "true_name": "Speed limit (30 km/h)",
+      "predicted_id": 4,
+      "predicted_name": "Speed limit (70 km/h)",
+      "logit_margin": 4.141616344451904
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05262.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 4.067984104156494
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02494.ppm",
+      "true_id": 2,
+      "true_name": "Speed limit (50 km/h)",
+      "predicted_id": 1,
+      "predicted_name": "Speed limit (30 km/h)",
+      "logit_margin": 3.833375930786133
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02538.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 3.69785737991333
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11825.ppm",
+      "true_id": 26,
+      "true_name": "Traffic signals",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 3.6837925910949707
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10454.ppm",
+      "true_id": 5,
+      "true_name": "Speed limit (80 km/h)",
+      "predicted_id": 7,
+      "predicted_name": "Speed limit (100 km/h)",
+      "logit_margin": 3.6173059940338135
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07142.ppm",
+      "true_id": 26,
+      "true_name": "Traffic signals",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 3.523993968963623
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11381.ppm",
+      "true_id": 14,
+      "true_name": "Stop",
+      "predicted_id": 38,
+      "predicted_name": "Keep right",
+      "logit_margin": 3.4812119007110596
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08007.ppm",
+      "true_id": 26,
+      "true_name": "Traffic signals",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 3.3613622188568115
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01276.ppm",
+      "true_id": 18,
+      "true_name": "General caution",
+      "predicted_id": 21,
+      "predicted_name": "Double curve",
+      "logit_margin": 3.258362293243408
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07473.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 3.2257609367370605
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/12214.ppm",
+      "true_id": 12,
+      "true_name": "Priority road",
+      "predicted_id": 13,
+      "predicted_name": "Yield",
+      "logit_margin": 3.183917760848999
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00492.ppm",
+      "true_id": 4,
+      "true_name": "Speed limit (70 km/h)",
+      "predicted_id": 15,
+      "predicted_name": "No vehicles",
+      "logit_margin": 3.1485981941223145
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10156.ppm",
+      "true_id": 22,
+      "true_name": "Bumpy road",
+      "predicted_id": 25,
+      "predicted_name": "Road work",
+      "logit_margin": 3.1212825775146484
+    }
+  ],
+  "confusion_pairs": [
+    [
+      "6->41",
+      21
+    ],
+    [
+      "3->5",
+      17
+    ],
+    [
+      "18->21",
+      16
+    ],
+    [
+      "12->13",
+      15
+    ],
+    [
+      "22->25",
+      10
+    ],
+    [
+      "36->40",
+      8
+    ],
+    [
+      "1->3",
+      7
+    ],
+    [
+      "30->11",
+      7
+    ],
+    [
+      "29->28",
+      6
+    ],
+    [
+      "26->25",
+      6
+    ],
+    [
+      "36->39",
+      6
+    ],
+    [
+      "39->38",
+      6
+    ],
+    [
+      "14->38",
+      6
+    ],
+    [
+      "2->1",
+      5
+    ],
+    [
+      "35->33",
+      4
+    ],
+    [
+      "27->11",
+      4
+    ],
+    [
+      "25->21",
+      3
+    ],
+    [
+      "8->7",
+      3
+    ],
+    [
+      "5->7",
+      3
+    ],
+    [
+      "18->25",
+      3
+    ]
+  ],
+  "selected_seed": 2028,
+  "selection_rule": "lowest best validation loss within model",
+  "lowest_recall_per_class": [
+    [
+      36,
+      0.85
+    ],
+    [
+      6,
+      0.8533333333333334
+    ],
+    [
+      22,
+      0.9
+    ],
+    [
+      29,
+      0.9111111111111111
+    ],
+    [
+      39,
+      0.9222222222222223
+    ],
+    [
+      27,
+      0.9333333333333333
+    ],
+    [
+      30,
+      0.94
+    ],
+    [
+      18,
+      0.9512820512820512
+    ],
+    [
+      26,
+      0.9555555555555556
+    ],
+    [
+      3,
+      0.9622222222222222
+    ]
+  ],
+  "lowest_precision_per_class": [
+    [
+      41,
+      0.7407407407407407
+    ],
+    [
+      21,
+      0.7964601769911505
+    ],
+    [
+      40,
+      0.90625
+    ],
+    [
+      39,
+      0.9120879120879121
+    ],
+    [
+      28,
+      0.9554140127388535
+    ],
+    [
+      25,
+      0.959758551307847
+    ],
+    [
+      5,
+      0.9704968944099379
+    ],
+    [
+      33,
+      0.971830985915493
+    ],
+    [
+      11,
+      0.974477958236659
+    ],
+    [
+      13,
+      0.9755434782608695
+    ]
+  ]
+}

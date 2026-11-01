@@ -1,0 +1,414 @@
+{
+  "incorrect": 156,
+  "total": 12630,
+  "most_confident_errors": [
+    {
+      "path": "GTSRB/Final_Test/Images/06177.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 10.213626861572266
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06874.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 9.807644844055176
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06613.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.89906120300293
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/12474.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.794955253601074
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08051.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.775496482849121
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/05262.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.710670471191406
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02538.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.589237213134766
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/10135.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.487039566040039
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/02397.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.386844635009766
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04543.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.369986534118652
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00858.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.362430572509766
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08198.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.285198211669922
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/00760.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.209943771362305
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07468.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.118581771850586
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07473.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 8.084306716918945
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09539.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.917598247528076
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/12364.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.8399152755737305
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09076.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.603638648986816
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/08552.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.501679420471191
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04449.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.482999801635742
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03655.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 7.450855731964111
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/06339.ppm",
+      "true_id": 8,
+      "true_name": "Speed limit (120 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.995538711547852
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/09638.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.902114391326904
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03296.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.89115047454834
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01573.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.7993693351745605
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/07421.ppm",
+      "true_id": 8,
+      "true_name": "Speed limit (120 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 6.20718240737915
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/01364.ppm",
+      "true_id": 8,
+      "true_name": "Speed limit (120 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 5.941325664520264
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/03086.ppm",
+      "true_id": 8,
+      "true_name": "Speed limit (120 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 5.7385759353637695
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/04072.ppm",
+      "true_id": 8,
+      "true_name": "Speed limit (120 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 5.689207553863525
+    },
+    {
+      "path": "GTSRB/Final_Test/Images/11691.ppm",
+      "true_id": 3,
+      "true_name": "Speed limit (60 km/h)",
+      "predicted_id": 5,
+      "predicted_name": "Speed limit (80 km/h)",
+      "logit_margin": 5.656883239746094
+    }
+  ],
+  "confusion_pairs": [
+    [
+      "3->5",
+      31
+    ],
+    [
+      "8->5",
+      28
+    ],
+    [
+      "22->25",
+      15
+    ],
+    [
+      "35->40",
+      9
+    ],
+    [
+      "38->13",
+      8
+    ],
+    [
+      "14->29",
+      8
+    ],
+    [
+      "12->13",
+      7
+    ],
+    [
+      "18->26",
+      5
+    ],
+    [
+      "6->42",
+      4
+    ],
+    [
+      "26->25",
+      4
+    ],
+    [
+      "30->20",
+      2
+    ],
+    [
+      "4->2",
+      2
+    ],
+    [
+      "30->11",
+      2
+    ],
+    [
+      "5->7",
+      2
+    ],
+    [
+      "18->23",
+      2
+    ],
+    [
+      "25->21",
+      1
+    ],
+    [
+      "40->36",
+      1
+    ],
+    [
+      "2->1",
+      1
+    ],
+    [
+      "4->13",
+      1
+    ],
+    [
+      "40->13",
+      1
+    ]
+  ],
+  "selected_seed": 2026,
+  "selection_rule": "lowest best validation loss within model",
+  "lowest_recall_per_class": [
+    [
+      22,
+      0.8666666666666667
+    ],
+    [
+      3,
+      0.9311111111111111
+    ],
+    [
+      8,
+      0.9377777777777778
+    ],
+    [
+      40,
+      0.9555555555555556
+    ],
+    [
+      6,
+      0.9666666666666667
+    ],
+    [
+      37,
+      0.9666666666666667
+    ],
+    [
+      14,
+      0.9703703703703703
+    ],
+    [
+      35,
+      0.9717948717948718
+    ],
+    [
+      26,
+      0.9722222222222222
+    ],
+    [
+      30,
+      0.9733333333333334
+    ]
+  ],
+  "lowest_precision_per_class": [
+    [
+      40,
+      0.8958333333333334
+    ],
+    [
+      29,
+      0.9090909090909091
+    ],
+    [
+      5,
+      0.9141193595342066
+    ],
+    [
+      42,
+      0.9574468085106383
+    ],
+    [
+      25,
+      0.9616161616161616
+    ],
+    [
+      0,
+      0.967741935483871
+    ],
+    [
+      26,
+      0.9722222222222222
+    ],
+    [
+      13,
+      0.975609756097561
+    ],
+    [
+      20,
+      0.9782608695652174
+    ],
+    [
+      21,
+      0.9782608695652174
+    ]
+  ]
+}
