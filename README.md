@@ -106,6 +106,11 @@ For error review, run `python scripts/analyze_errors.py --predictions outputs/fi
 
 ## CLI and demo
 
+![Demo showing a Stop prediction and Grad-CAM explanation for a synthetic sign](assets/demo-output.jpg)
+
+*Actual demo output using the local single-seed CNN and a synthetic sign; the
+shown confidence and latency are from one run and are not benchmark results.*
+
 ```bash
 python scripts/predict.py --image path/to/cropped_sign.png \
   --checkpoint outputs/finetune/best.pt \
